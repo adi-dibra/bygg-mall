@@ -1,0 +1,31 @@
+---
+import SectionWrapper from "./SectionWrapper.astro";
+import type { ImageBlockSection } from "../types/content";
+
+interface Props {
+  section: ImageBlockSection;
+}
+
+const { section } = Astro.props;
+---
+
+<SectionWrapper id={section.id}>
+  <div class:list={["image-block", `image-block--${section.imageSide}`]}>
+    <figure class="image-block__media">
+      <img src={section.image.src} alt={section.image.alt} loading="lazy" />
+    </figure>
+
+    <div class="image-block__content">
+      <h2>{section.heading}</h2>
+      <p>{section.intro}</p>
+      {section.body.map((paragraph) => (
+        <p>{paragraph}</p>
+      ))}
+      <ul>
+        {section.bullets.map((bullet) => (
+          <li>{bullet}</li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</SectionWrapper>

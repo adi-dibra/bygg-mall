@@ -1,0 +1,23 @@
+---
+import SectionWrapper from "./SectionWrapper.astro";
+import type { CtaSection } from "../types/content";
+
+interface Props {
+  section: CtaSection;
+}
+
+const { section } = Astro.props;
+---
+
+<SectionWrapper id={section.id} tone="accent">
+  <div class="cta-block">
+    <div>
+      <h2>{section.heading}</h2>
+      <p>{section.intro}</p>
+    </div>
+    <div class="cta-block__actions">
+      <a class="button button--solid" href={section.primaryCta.href}>{section.primaryCta.label}</a>
+      <a class="button button--ghost" href={section.secondaryCta.href}>{section.secondaryCta.label}</a>
+    </div>
+  </div>
+</SectionWrapper>

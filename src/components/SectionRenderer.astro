@@ -1,0 +1,50 @@
+---
+import FeatureGrid from "./FeatureGrid.astro";
+import ImageBlock from "./ImageBlock.astro";
+import TextBlock from "./TextBlock.astro";
+import CtaBlock from "./CtaBlock.astro";
+import ProjectGallery from "./ProjectGallery.astro";
+import ReviewList from "./ReviewList.astro";
+import ContactForm from "./ContactForm.astro";
+import type { PageSection } from "../types/content";
+
+interface Props {
+  sections: PageSection[];
+}
+
+const { sections } = Astro.props;
+---
+
+{
+  sections.map((section) => {
+    if (section.type === "feature-grid") {
+      return <FeatureGrid section={section} />;
+    }
+
+    if (section.type === "image-block") {
+      return <ImageBlock section={section} />;
+    }
+
+    if (section.type === "text-block") {
+      return <TextBlock section={section} />;
+    }
+
+    if (section.type === "cta") {
+      return <CtaBlock section={section} />;
+    }
+
+    if (section.type === "project-gallery") {
+      return <ProjectGallery section={section} />;
+    }
+
+    if (section.type === "review-list") {
+      return <ReviewList section={section} />;
+    }
+
+    if (section.type === "contact-form") {
+      return <ContactForm section={section} />;
+    }
+
+    return null;
+  })
+}

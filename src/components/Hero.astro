@@ -1,0 +1,28 @@
+---
+import SectionWrapper from "./SectionWrapper.astro";
+import type { HeroContent } from "../types/content";
+
+interface Props {
+  hero: HeroContent;
+}
+
+const { hero } = Astro.props;
+---
+
+<SectionWrapper id="top">
+  <div class="hero">
+    <div class="hero__content">
+      <p class="hero__eyebrow">{hero.eyebrow}</p>
+      <h1>{hero.title}</h1>
+      <p class="hero__intro">{hero.intro}</p>
+      {
+        hero.showActions !== false && (
+          <div class="hero__actions">
+            <a class="button button--solid" href={hero.primaryCta.href}>{hero.primaryCta.label}</a>
+            <a class="button button--ghost" href={hero.secondaryCta.href}>{hero.secondaryCta.label}</a>
+          </div>
+        )
+      }
+    </div>
+  </div>
+</SectionWrapper>

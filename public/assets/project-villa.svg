@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" role="img" aria-labelledby="title desc">
+  <title id="title">Residential project placeholder</title>
+  <desc id="desc">Completed villa project with landscaping.</desc>
+  <rect width="1200" height="800" fill="#f0e6d9"/>
+  <rect x="0" y="590" width="1200" height="210" fill="#d7c09f"/>
+  <rect x="280" y="270" width="640" height="320" fill="#c19366"/>
+  <polygon points="220,330 600,130 980,330" fill="#8c5d2f"/>
+  <rect x="530" y="420" width="140" height="170" fill="#6f4828"/>
+  <rect x="360" y="360" width="120" height="100" fill="#efe2d2"/>
+  <rect x="720" y="360" width="120" height="100" fill="#efe2d2"/>
+  <circle cx="180" cy="620" r="52" fill="#5a7b3f"/>
+  <circle cx="1020" cy="620" r="52" fill="#5a7b3f"/>
+  <rect x="520" y="610" width="160" height="25" fill="#88613c"/>
+</svg>

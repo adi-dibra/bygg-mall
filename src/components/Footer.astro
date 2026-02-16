@@ -1,0 +1,40 @@
+---
+import type { FooterColumn } from "../types/content";
+
+interface Props {
+  brandName: string;
+  brandTagline: string;
+  footerColumns: FooterColumn[];
+  footerNote: string;
+}
+
+const { brandName, brandTagline, footerColumns, footerNote } = Astro.props;
+---
+
+<footer class="site-footer">
+  <div class="shell site-footer__inner">
+    <div class="site-footer__brand">
+      <p class="site-footer__name">{brandName}</p>
+      <p class="site-footer__tagline">{brandTagline}</p>
+    </div>
+
+    <div class="site-footer__columns">
+      {footerColumns.map((column) => (
+        <div class="site-footer__column">
+          <h2>{column.heading}</h2>
+          <ul>
+            {column.links.map((link) => (
+              <li>
+                <a href={link.href}>{link.label}</a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <div class="shell site-footer__bottom">
+    <p>{footerNote}</p>
+  </div>
+</footer>

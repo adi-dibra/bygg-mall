@@ -1,0 +1,87 @@
+---
+import type { LanguageOption } from "../types/content";
+
+interface Props {
+  label: string;
+  options: LanguageOption[];
+  activeLanguage: string;
+}
+
+const { label, options, activeLanguage } = Astro.props;
+const emojiByCode: Record<string, string> = {
+  sv: "🇸🇪",
+  en: "🇬🇧",
+  sq: "🇦🇱"
+};
+const activeOption = options.find((option) => option.code === activeLanguage);
+const activeEmoji = activeOption ? (emojiByCode[activeOption.code] ?? "🌐") : "🌐";
+---
+
+<details class="preferences-dropdown language-dropdown">
+  <summary class="theme-toggle preferences-dropdown__summary" aria-label={label}>
+    <span class="preferences-dropdown__summary-emoji" aria-hidden="true">{activeEmoji}</span>
+    <span class="theme-toggle__text">{label}</span>
+  </summary>
+
+  <div class="preferences-dropdown__panel">
+    <p class="preferences-dropdown__heading">{label}</p>
+    <div class="preferences-dropdown__options">
+      {options.map((option) => (
+        <a
+          class:list={[
+            "preferences-dropdown__option",
+            option.code === activeLanguage && "preferences-dropdown__option--active"
+          ]}
+          href={option.href}
+          lang={option.code}
+          hreflang={option.code}
+        >
+          <span class="preferences-dropdown__emoji" aria-hidden="true">
+            {emojiByCode[option.code] ?? "🌐"}
+          </span>
+          <span>{option.label}</span>
+        </a>
+      ))}
+    </div>
+  </div>
+</details>
+
+<script is:inline>
+  const languageDropdowns = document.querySelectorAll(".language-dropdown");
+
+  for (const dropdown of languageDropdowns) {
+    if (!(dropdown instanceof HTMLDetailsElement)) {
+      continue;
+    }
+
+    dropdown.addEventListener("toggle", () => {
+      if (!dropdown.open) {
+        return;
+      }
+
+      const allDropdowns = document.querySelectorAll(".preferences-dropdown");
+      for (const otherDropdown of allDropdowns) {
+        if (otherDropdown !== dropdown && otherDropdown instanceof HTMLDetailsElement) {
+          otherDropdown.open = false;
+        }
+      }
+    });
+
+    const languageLinks = dropdown.querySelectorAll(".preferences-dropdown__option[href]");
+    for (const languageLink of languageLinks) {
+      languageLink.addEventListener("click", () => {
+        dropdown.open = false;
+      });
+    }
+
+    document.addEventListener("click", (event) => {
+      if (!dropdown.open) {
+        return;
+      }
+
+      if (event.target instanceof Node && !dropdown.contains(event.target)) {
+        dropdown.open = false;
+      }
+    });
+  }
+</script>

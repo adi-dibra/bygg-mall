@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" role="img" aria-labelledby="title desc">
+  <title id="title">Core construction service placeholder</title>
+  <desc id="desc">Structural framework and planning grid.</desc>
+  <rect width="1200" height="800" fill="#f3ebdf"/>
+  <rect x="110" y="120" width="980" height="560" fill="#f8f3ea" stroke="#cfbfa9" stroke-width="8"/>
+  <rect x="220" y="220" width="760" height="360" fill="#d7c0a2"/>
+  <line x1="220" y1="300" x2="980" y2="300" stroke="#8c5d2f" stroke-width="8"/>
+  <line x1="220" y1="390" x2="980" y2="390" stroke="#8c5d2f" stroke-width="8"/>
+  <line x1="220" y1="480" x2="980" y2="480" stroke="#8c5d2f" stroke-width="8"/>
+  <line x1="360" y1="220" x2="360" y2="580" stroke="#8c5d2f" stroke-width="8"/>
+  <line x1="520" y1="220" x2="520" y2="580" stroke="#8c5d2f" stroke-width="8"/>
+  <line x1="680" y1="220" x2="680" y2="580" stroke="#8c5d2f" stroke-width="8"/>
+  <line x1="840" y1="220" x2="840" y2="580" stroke="#8c5d2f" stroke-width="8"/>
+</svg>

@@ -1,0 +1,194 @@
+---
+locale: en
+slug: about
+route: /en/about/
+meta:
+  title: About | Nordkust Construction Partner
+  description: Present company experience, project team, and quality approach in a structured format.
+site:
+  htmlLang: en-GB
+  brandName: Nordkust Construction Partner
+  brandTagline: Contracting with structure, accountability, and long-term value.
+  navigationAriaLabel: Main navigation
+  navigation:
+    - label: Home
+      href: /en/
+    - label: About
+      href: /en/about/
+    - label: Services
+      href: /en/services/
+    - label: Projects
+      href: /en/projects/
+    - label: Contact
+      href: /en/contact/
+  headerCta:
+    label: Book site visit
+    href: /en/contact/
+  languageSwitcherLabel: Language
+  languageOptions:
+    - code: sv
+      label: Svenska
+      href: /sv/about/
+    - code: en
+      label: English
+      href: /en/about/
+    - code: sq
+      label: Shqip
+      href: /sq/about/
+  theme:
+    storageKey: bygg-mall-theme
+    defaultTheme: light-red
+    menuLabel: Display
+    themeLabel: Theme
+    lightGroupLabel: Light themes
+    darkGroupLabel: Dark themes
+    options:
+      - id: light-red
+        label: Red
+        tone: light
+      - id: light-blue
+        label: Blue
+        tone: light
+      - id: light-green
+        label: Green
+        tone: light
+      - id: light-yellow
+        label: Yellow
+        tone: light
+      - id: dark-red
+        label: Red
+        tone: dark
+      - id: dark-blue
+        label: Blue
+        tone: dark
+      - id: dark-green
+        label: Green
+        tone: dark
+      - id: dark-yellow
+        label: Yellow
+        tone: dark
+  footerColumns:
+    - heading: Pages
+      links:
+        - label: Home
+          href: /en/
+        - label: About
+          href: /en/about/
+        - label: Services
+          href: /en/services/
+        - label: Projects
+          href: /en/projects/
+        - label: Contact
+          href: /en/contact/
+    - heading: Focus areas
+      links:
+        - label: Project coordination
+          href: /en/about/#coordination
+        - label: Quality control
+          href: /en/about/#quality
+        - label: Team
+          href: /en/about/#team
+    - heading: Contact
+      links:
+        - label: +46 8 555 100 20
+          href: tel:+46855510020
+        - label: tender@nordkustbygg.se
+          href: mailto:tender@nordkustbygg.se
+        - label: Sveavagen 118, Stockholm
+          href: /en/contact/#contact
+  footerNote: Nordkust Construction Partner AB | Template content for construction companies in Sweden.
+hero:
+  eyebrow: About the company
+  title: A delivery team of site managers, supervisors, and specialists who keep projects on schedule.
+  intro: This page layout is designed to communicate who you are, how you lead projects, and why clients come back.
+  primaryCta:
+    label: Explore services
+    href: /en/services/
+  secondaryCta:
+    label: Contact the team
+    href: /en/contact/
+  image:
+    src: /assets/about-team.svg
+    alt: Planning meeting between site manager and project engineer.
+sections:
+  - type: image-block
+    id: coordination
+    heading: Coordination that keeps the full contract aligned
+    intro: Explain responsibilities, decision flow, and communication between disciplines.
+    body:
+      - The template makes it easy to present how project management, site production, and subcontractors operate in one structure.
+      - A clear accountability chain reduces bottlenecks and improves both schedule reliability and quality.
+    bullets:
+      - Fixed project organization from kickoff
+      - Weekly control of time, budget, and risk
+      - Shared reporting structure for all parties
+    image:
+      src: /assets/project-villa.svg
+      alt: Newly completed residential property with finished exterior.
+    imageSide: left
+  - type: text-block
+    id: quality
+    heading: Quality assurance integrated into every delivery stage
+    intro: Show that quality is a continuous operating model, not a final checkbox.
+    body:
+      - Self-inspections, deviation control, and documented follow-up should be visible to the client throughout the contract.
+      - Standardized records create better decision support for both client and project organization.
+    metrics:
+      - label: Delivered contracts
+        value: 320+
+      - label: Certified specialist roles
+        value: 45
+      - label: Post-handover client follow-up
+        value: 6 mo
+  - type: feature-grid
+    id: team
+    heading: The team behind delivery
+    intro: Meet the people leading planning, site production, and technical quality across our projects.
+    items:
+      - title: Sofia Lindberg | Operations Director
+        description: Leads contract strategy, resource planning, and cross-project governance from tender to handover.
+        image:
+          src: /assets/project-facade.svg
+          alt: Facade works managed in a controlled renovation setup.
+        link:
+          label: View profile
+          href: mailto:sofia.lindberg@nordkustbygg.se
+      - title: Erik Dahl | Senior Site Manager
+        description: Manages active production sites with focus on daily coordination, quality checkpoints, and safety routines.
+        image:
+          src: /assets/project-site.svg
+          alt: Construction site with crane and coordinated material logistics.
+        link:
+          label: View profile
+          href: mailto:erik.dahl@nordkustbygg.se
+      - title: Lina Pettersson | Design and Engineering Lead
+        description: Owns technical documentation, buildability reviews, and design coordination before each production stage.
+        image:
+          src: /assets/services-core.svg
+          alt: Technical construction planning sheet.
+        link:
+          label: View profile
+          href: mailto:lina.pettersson@nordkustbygg.se
+    sectionCta:
+      heading: Join the team
+      description: We are always looking for experienced supervisors, skilled trades, and project engineers.
+      link:
+        label: Send open application
+        href: /en/contact/#contact-form
+  - type: cta
+    id: cta-about
+    heading: Ready to replace this with your real team profile?
+    intro: Swap placeholder copy for your own staff structure, certifications, and project references.
+    primaryCta:
+      label: Start customization
+      href: /en/contact/
+    secondaryCta:
+      label: Back to home
+      href: /en/
+---
+
+
+
+
+
+

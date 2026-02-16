@@ -1,0 +1,265 @@
+---
+import SectionWrapper from "./SectionWrapper.astro";
+import type { ProjectGallerySection } from "../types/content";
+
+interface Props {
+  section: ProjectGallerySection;
+}
+
+const { section } = Astro.props;
+const modalId = `${section.id}-modal`;
+---
+
+<SectionWrapper id={section.id} tone="surface">
+  <div class="block-heading">
+    <h2>{section.heading}</h2>
+    <p>{section.intro}</p>
+  </div>
+
+  <div class="project-gallery" data-project-gallery-id={section.id}>
+    <div class="project-gallery__tabs" role="tablist" aria-label={section.tabsAriaLabel}>
+      <button
+        class="project-gallery__tab project-gallery__tab--active"
+        type="button"
+        role="tab"
+        aria-selected="true"
+        data-project-tab="all"
+      >
+        {section.allTabLabel}
+      </button>
+      {section.categories.map((category) => (
+        <button
+          class="project-gallery__tab"
+          type="button"
+          role="tab"
+          aria-selected="false"
+          data-project-tab={category.id}
+        >
+          {category.label}
+        </button>
+      ))}
+    </div>
+
+    <div class="project-gallery__grid">
+      {section.cards.map((card, cardIndex) => (
+        <article class="project-card" data-project-card data-project-categories={card.categories.join(",")}>
+          <button
+            class="project-card__trigger"
+            type="button"
+            data-project-open={String(cardIndex)}
+            aria-haspopup="dialog"
+            aria-controls={modalId}
+          >
+            <figure class="project-card__media">
+              <img src={card.image.src} alt={card.image.alt} loading="lazy" />
+            </figure>
+            <div class="project-card__body">
+              <h3>{card.title}</h3>
+              <p>{card.description}</p>
+              <span class="project-card__action">{card.openLabel}</span>
+            </div>
+          </button>
+        </article>
+      ))}
+    </div>
+
+    <dialog id={modalId} class="project-modal" aria-label={section.modalAriaLabel}>
+      <article class="project-modal__frame">
+        <div class="project-modal__header">
+          <h3 data-modal-title></h3>
+          <button type="button" class="project-modal__close" data-modal-close>
+            {section.modalCloseLabel}
+          </button>
+        </div>
+        <figure class="project-modal__hero">
+          <img data-modal-main-image loading="lazy" />
+        </figure>
+        <div class="project-modal__gallery-heading">{section.galleryHeading}</div>
+        <div class="project-modal__thumbs" data-modal-thumbs></div>
+        <p class="project-modal__description" data-modal-description></p>
+        <dl class="project-modal__meta">
+          <div>
+            <dt>{section.locationLabel}</dt>
+            <dd data-modal-location></dd>
+          </div>
+          <div>
+            <dt>{section.timeframeLabel}</dt>
+            <dd data-modal-timeframe></dd>
+          </div>
+        </dl>
+      </article>
+    </dialog>
+  </div>
+</SectionWrapper>
+
+<script is:inline define:vars={{ sectionId: section.id, projects: section.cards }}>
+  const galleryRoot = document.querySelector(`[data-project-gallery-id="${sectionId}"]`);
+
+  if (galleryRoot instanceof HTMLElement) {
+    const tabButtons = Array.from(galleryRoot.querySelectorAll("[data-project-tab]"));
+    const cardNodes = Array.from(galleryRoot.querySelectorAll("[data-project-card]"));
+    const triggerButtons = Array.from(galleryRoot.querySelectorAll("[data-project-open]"));
+    const modal = galleryRoot.querySelector("dialog");
+    const closeButton = galleryRoot.querySelector("[data-modal-close]");
+    const titleNode = galleryRoot.querySelector("[data-modal-title]");
+    const descriptionNode = galleryRoot.querySelector("[data-modal-description]");
+    const locationNode = galleryRoot.querySelector("[data-modal-location]");
+    const timeframeNode = galleryRoot.querySelector("[data-modal-timeframe]");
+    const mainImageNode = galleryRoot.querySelector("[data-modal-main-image]");
+    const thumbsNode = galleryRoot.querySelector("[data-modal-thumbs]");
+
+    const setTab = (activeTab) => {
+      for (const tabButton of tabButtons) {
+        if (!(tabButton instanceof HTMLButtonElement)) {
+          continue;
+        }
+
+        const tabId = tabButton.dataset.projectTab ?? "";
+        const isActive = tabId === activeTab;
+        tabButton.classList.toggle("project-gallery__tab--active", isActive);
+        tabButton.setAttribute("aria-selected", isActive ? "true" : "false");
+      }
+
+      for (const cardNode of cardNodes) {
+        if (!(cardNode instanceof HTMLElement)) {
+          continue;
+        }
+
+        const categoryList = (cardNode.dataset.projectCategories ?? "")
+          .split(",")
+          .map((value) => value.trim())
+          .filter(Boolean);
+        const shouldShow = activeTab === "all" || categoryList.includes(activeTab);
+        cardNode.hidden = !shouldShow;
+      }
+    };
+
+    const setActiveImage = (gallery, activeIndex) => {
+      if (!(mainImageNode instanceof HTMLImageElement)) {
+        return;
+      }
+
+      const clampedIndex = Math.max(0, Math.min(activeIndex, gallery.length - 1));
+      const activeImage = gallery[clampedIndex];
+      if (!activeImage) {
+        return;
+      }
+
+      mainImageNode.src = activeImage.src;
+      mainImageNode.alt = activeImage.alt;
+
+      if (thumbsNode instanceof HTMLElement) {
+        const thumbButtons = Array.from(thumbsNode.querySelectorAll("[data-modal-thumb-index]"));
+        for (const thumbButton of thumbButtons) {
+          if (!(thumbButton instanceof HTMLButtonElement)) {
+            continue;
+          }
+
+          const thumbIndex = Number.parseInt(thumbButton.dataset.modalThumbIndex ?? "-1", 10);
+          const isActive = thumbIndex === clampedIndex;
+          thumbButton.classList.toggle("project-modal__thumb--active", isActive);
+          thumbButton.setAttribute("aria-current", isActive ? "true" : "false");
+        }
+      }
+    };
+
+    const renderModalThumbs = (gallery) => {
+      if (!(thumbsNode instanceof HTMLElement)) {
+        return;
+      }
+
+      thumbsNode.innerHTML = "";
+
+      gallery.forEach((galleryImage, imageIndex) => {
+        const thumbButton = document.createElement("button");
+        thumbButton.type = "button";
+        thumbButton.className = "project-modal__thumb";
+        thumbButton.dataset.modalThumbIndex = String(imageIndex);
+        thumbButton.setAttribute("aria-label", galleryImage.alt);
+        thumbButton.setAttribute("aria-current", imageIndex === 0 ? "true" : "false");
+
+        const image = document.createElement("img");
+        image.src = galleryImage.src;
+        image.alt = galleryImage.alt;
+        image.loading = "lazy";
+
+        thumbButton.appendChild(image);
+        thumbButton.addEventListener("click", () => {
+          setActiveImage(gallery, imageIndex);
+        });
+
+        thumbsNode.appendChild(thumbButton);
+      });
+    };
+
+    const openProjectModal = (projectIndex) => {
+      const project = projects[projectIndex];
+      if (!project || !(modal instanceof HTMLDialogElement)) {
+        return;
+      }
+
+      if (titleNode instanceof HTMLElement) {
+        titleNode.textContent = project.title;
+      }
+
+      if (descriptionNode instanceof HTMLElement) {
+        descriptionNode.textContent = project.description;
+      }
+
+      if (locationNode instanceof HTMLElement) {
+        locationNode.textContent = project.location;
+      }
+
+      if (timeframeNode instanceof HTMLElement) {
+        timeframeNode.textContent = project.timeframe;
+      }
+
+      const gallery = Array.isArray(project.gallery) && project.gallery.length > 0 ? project.gallery : [project.image];
+      renderModalThumbs(gallery);
+      setActiveImage(gallery, 0);
+      modal.showModal();
+    };
+
+    setTab("all");
+
+    for (const tabButton of tabButtons) {
+      if (!(tabButton instanceof HTMLButtonElement)) {
+        continue;
+      }
+
+      tabButton.addEventListener("click", () => {
+        const selectedTab = tabButton.dataset.projectTab ?? "all";
+        setTab(selectedTab);
+      });
+    }
+
+    for (const triggerButton of triggerButtons) {
+      if (!(triggerButton instanceof HTMLButtonElement)) {
+        continue;
+      }
+
+      triggerButton.addEventListener("click", () => {
+        const projectIndex = Number.parseInt(triggerButton.dataset.projectOpen ?? "-1", 10);
+        if (Number.isNaN(projectIndex)) {
+          return;
+        }
+
+        openProjectModal(projectIndex);
+      });
+    }
+
+    if (closeButton instanceof HTMLButtonElement && modal instanceof HTMLDialogElement) {
+      closeButton.addEventListener("click", () => {
+        modal.close();
+      });
+    }
+
+    if (modal instanceof HTMLDialogElement) {
+      modal.addEventListener("click", (event) => {
+        if (event.target === modal) {
+          modal.close();
+        }
+      });
+    }
+  }
+</script>

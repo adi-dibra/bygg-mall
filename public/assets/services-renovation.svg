@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" role="img" aria-labelledby="title desc">
+  <title id="title">Renovation service placeholder</title>
+  <desc id="desc">Interior renovation scene with tools and panels.</desc>
+  <rect width="1200" height="800" fill="#efe3d3"/>
+  <rect x="120" y="120" width="960" height="560" fill="#f8f3ea" stroke="#cdb89c" stroke-width="8"/>
+  <rect x="180" y="200" width="250" height="420" fill="#d4b590"/>
+  <rect x="470" y="220" width="250" height="400" fill="#c49c70"/>
+  <rect x="760" y="180" width="260" height="440" fill="#b27f4e"/>
+  <rect x="230" y="320" width="140" height="200" fill="#8c5d2f"/>
+  <rect x="540" y="340" width="120" height="180" fill="#8c5d2f"/>
+  <rect x="830" y="300" width="140" height="220" fill="#8c5d2f"/>
+  <rect x="520" y="610" width="160" height="35" fill="#6b4525"/>
+  <circle cx="560" cy="610" r="22" fill="#6b4525"/>
+  <circle cx="640" cy="610" r="22" fill="#6b4525"/>
+</svg>

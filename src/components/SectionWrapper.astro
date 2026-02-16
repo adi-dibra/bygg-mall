@@ -1,0 +1,14 @@
+---
+interface Props {
+  id: string;
+  tone?: "default" | "surface" | "accent";
+}
+
+const { id, tone = "default" } = Astro.props;
+---
+
+<section id={id} class:list={["section", `section--${tone}`]}>
+  <div class="shell section__inner">
+    <slot />
+  </div>
+</section>

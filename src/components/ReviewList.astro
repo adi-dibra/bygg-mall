@@ -1,0 +1,28 @@
+---
+import SectionWrapper from "./SectionWrapper.astro";
+import type { ReviewListSection } from "../types/content";
+
+interface Props {
+  section: ReviewListSection;
+}
+
+const { section } = Astro.props;
+---
+
+<SectionWrapper id={section.id} tone="surface">
+  <div class="block-heading">
+    <h2>{section.heading}</h2>
+    <p>{section.intro}</p>
+  </div>
+
+  <div class="review-list">
+    {section.items.map((item) => (
+      <article class="review-card">
+        <p class="review-card__quote">"{item.quote}"</p>
+        <p class="review-card__author">{item.author}</p>
+        <p class="review-card__role">{item.role}</p>
+        <p class="review-card__rating">{item.rating}</p>
+      </article>
+    ))}
+  </div>
+</SectionWrapper>

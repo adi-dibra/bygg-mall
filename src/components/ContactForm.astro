@@ -1,0 +1,53 @@
+---
+import SectionWrapper from "./SectionWrapper.astro";
+import type { ContactFormSection } from "../types/content";
+
+interface Props {
+  section: ContactFormSection;
+}
+
+const { section } = Astro.props;
+const subject = encodeURIComponent(section.subject);
+const formAction = `mailto:${section.recipientEmail}?subject=${subject}`;
+---
+
+<SectionWrapper id={section.id} tone="surface">
+  <div class="block-heading">
+    <h2>{section.heading}</h2>
+    <p>{section.intro}</p>
+  </div>
+
+  <form class="contact-form" action={formAction} method="post" enctype="text/plain">
+    {section.fields.map((field) => {
+      const fieldId = `${section.id}-${field.name}`;
+      const isTextarea = field.type === "textarea";
+
+      return (
+        <label class="contact-form__field" for={fieldId}>
+          <span>{field.label}</span>
+          {isTextarea ? (
+            <textarea
+              id={fieldId}
+              name={field.name}
+              placeholder={field.placeholder}
+              required={field.required}
+              rows={5}
+            ></textarea>
+          ) : (
+            <input
+              id={fieldId}
+              name={field.name}
+              type={field.type}
+              placeholder={field.placeholder}
+              required={field.required}
+            />
+          )}
+        </label>
+      );
+    })}
+
+    <div class="contact-form__actions">
+      <button class="button button--solid" type="submit">{section.submitLabel}</button>
+    </div>
+  </form>
+</SectionWrapper>

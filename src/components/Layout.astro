@@ -1,0 +1,71 @@
+---
+import "../styles/global.css";
+
+interface Props {
+  htmlLang: string;
+  meta: {
+    title: string;
+    description: string;
+  };
+  theme: {
+    storageKey: string;
+    defaultTheme: string;
+    options: Array<{
+      id: string;
+      tone: "light" | "dark";
+    }>;
+  };
+}
+
+const { htmlLang, meta, theme } = Astro.props;
+---
+
+<!doctype html>
+<html lang={htmlLang} data-theme={theme.defaultTheme}>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{meta.title}</title>
+    <meta name="description" content={meta.description} />
+    <script
+      is:inline
+      define:vars={{
+        storageKey: theme.storageKey,
+        defaultTheme: theme.defaultTheme,
+        options: theme.options
+      }}
+    >
+      (() => {
+        const root = document.documentElement;
+        const savedMode = window.localStorage.getItem(storageKey);
+        const availableThemes = Array.isArray(options) ? options.map((option) => option.id) : [];
+        const lightThemes = Array.isArray(options)
+          ? options.filter((option) => option.tone === "light").map((option) => option.id)
+          : [];
+        const darkThemes = Array.isArray(options)
+          ? options.filter((option) => option.tone === "dark").map((option) => option.id)
+          : [];
+        const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+        const fallbackTheme =
+          prefersDark
+            ? darkThemes[0] ?? availableThemes[0] ?? "dark-red"
+            : lightThemes[0] ?? availableThemes[0] ?? "light-red";
+
+        const resolvedTheme = availableThemes.includes(savedMode ?? "")
+          ? savedMode
+          : availableThemes.includes(defaultTheme)
+            ? defaultTheme
+            : fallbackTheme;
+
+        root.dataset.theme = resolvedTheme;
+      })();
+    </script>
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

@@ -1,0 +1,42 @@
+---
+import SectionWrapper from "./SectionWrapper.astro";
+import type { FeatureGridSection } from "../types/content";
+
+interface Props {
+  section: FeatureGridSection;
+}
+
+const { section } = Astro.props;
+---
+
+<SectionWrapper id={section.id} tone="surface">
+  <div class="block-heading">
+    <h2>{section.heading}</h2>
+    <p>{section.intro}</p>
+  </div>
+
+  <div class="feature-grid">
+    {section.items.map((item) => (
+      <a class="feature-card feature-card--link" href={item.link.href} aria-label={item.link.label}>
+        <figure>
+          <img src={item.image.src} alt={item.image.alt} loading="lazy" />
+        </figure>
+        <h3>{item.title}</h3>
+        <p>{item.description}</p>
+        <span class="feature-card__link">{item.link.label}</span>
+      </a>
+    ))}
+  </div>
+
+  {
+    section.sectionCta && (
+      <div class="feature-grid__cta">
+        <h3>{section.sectionCta.heading}</h3>
+        <p>{section.sectionCta.description}</p>
+        <a class="button button--solid" href={section.sectionCta.link.href}>
+          {section.sectionCta.link.label}
+        </a>
+      </div>
+    )
+  }
+</SectionWrapper>

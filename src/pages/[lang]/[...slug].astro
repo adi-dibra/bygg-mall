@@ -1,0 +1,61 @@
+---
+import Footer from "../../components/Footer.astro";
+import Header from "../../components/Header.astro";
+import Hero from "../../components/Hero.astro";
+import Layout from "../../components/Layout.astro";
+import SectionRenderer from "../../components/SectionRenderer.astro";
+import { getAllPages } from "../../lib/content";
+import type { PageContent } from "../../types/content";
+
+export function getStaticPaths() {
+  return getAllPages().map((page) => {
+    const routePrefix = `/${page.locale}/`;
+    const normalizedRoute = page.route.startsWith(routePrefix)
+      ? page.route.slice(routePrefix.length)
+      : page.route.replace(/^\//, "");
+    const trimmedRoute = normalizedRoute.replace(/\/$/, "");
+    const slugPath = trimmedRoute.length > 0 ? trimmedRoute : undefined;
+
+    return {
+      params: {
+        lang: page.locale,
+        slug: slugPath
+      },
+      props: {
+        page
+      }
+    };
+  });
+}
+
+interface Props {
+  page: PageContent;
+}
+
+const { page } = Astro.props;
+---
+
+<Layout htmlLang={page.site.htmlLang} meta={page.meta} theme={page.site.theme}>
+  <Header
+    brandName={page.site.brandName}
+    navigationAriaLabel={page.site.navigationAriaLabel}
+    navigation={page.site.navigation}
+    languageSwitcherLabel={page.site.languageSwitcherLabel}
+    languageOptions={page.site.languageOptions}
+    activeLanguage={page.locale}
+    theme={page.site.theme}
+    currentRoute={page.route}
+  />
+
+  <main>
+    <Hero hero={page.hero} />
+    <SectionRenderer sections={page.sections} />
+  </main>
+
+  <Footer
+    brandName={page.site.brandName}
+    brandTagline={page.site.brandTagline}
+    footerColumns={page.site.footerColumns}
+    footerNote={page.site.footerNote}
+  />
+</Layout>

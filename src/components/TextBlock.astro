@@ -1,0 +1,77 @@
+---
+import SectionWrapper from "./SectionWrapper.astro";
+import type { TextBlockSection } from "../types/content";
+
+interface Props {
+  section: TextBlockSection;
+}
+
+const { section } = Astro.props;
+
+const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const phonePattern = /^\+?[0-9()\-.\s]+$/;
+
+const getMetricLink = (value: unknown): { href: string; label: string } | null => {
+  const trimmedValue = String(value ?? "").trim();
+
+  if (emailPattern.test(trimmedValue)) {
+    return {
+      href: `mailto:${trimmedValue}`,
+      label: trimmedValue
+    };
+  }
+
+  if (!phonePattern.test(trimmedValue)) {
+    return null;
+  }
+
+  const normalizedPhone = trimmedValue.replace(/[\s().-]/g, "");
+  const digitCount = normalizedPhone.replace(/^\+/, "").replace(/\D/g, "").length;
+
+  if (digitCount < 8) {
+    return null;
+  }
+
+  return {
+    href: `tel:${normalizedPhone}`,
+    label: trimmedValue
+  };
+};
+---
+
+<SectionWrapper id={section.id} tone="surface">
+  <div class="text-block">
+    <div class="text-block__content">
+      <h2>{section.heading}</h2>
+      <p>{section.intro}</p>
+      {section.body.map((paragraph) => (
+        <p>{paragraph}</p>
+      ))}
+    </div>
+
+    <div class="text-block__metrics">
+      {section.metrics.map((metric) => (
+        <article>
+          {
+            (() => {
+              const metricLink = getMetricLink(metric.value);
+
+              if (metricLink) {
+                return (
+                  <h3>
+                    <a class="text-block__metric-link" href={metricLink.href}>
+                      {metricLink.label}
+                    </a>
+                  </h3>
+                );
+              }
+
+              return <h3>{metric.value}</h3>;
+            })()
+          }
+          <p>{metric.label}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</SectionWrapper>

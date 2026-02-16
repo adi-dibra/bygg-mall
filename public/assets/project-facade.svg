@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" role="img" aria-labelledby="title desc">
+  <title id="title">Facade project placeholder</title>
+  <desc id="desc">Facade renovation scene with scaffolding.</desc>
+  <rect width="1200" height="800" fill="#ece0d1"/>
+  <rect x="150" y="130" width="900" height="560" fill="#f8f2e8" stroke="#c8b49b" stroke-width="8"/>
+  <rect x="260" y="220" width="680" height="420" fill="#b48759"/>
+  <line x1="260" y1="300" x2="940" y2="300" stroke="#7d522d" stroke-width="8"/>
+  <line x1="260" y1="380" x2="940" y2="380" stroke="#7d522d" stroke-width="8"/>
+  <line x1="260" y1="460" x2="940" y2="460" stroke="#7d522d" stroke-width="8"/>
+  <line x1="260" y1="540" x2="940" y2="540" stroke="#7d522d" stroke-width="8"/>
+  <line x1="360" y1="220" x2="360" y2="640" stroke="#7d522d" stroke-width="8"/>
+  <line x1="520" y1="220" x2="520" y2="640" stroke="#7d522d" stroke-width="8"/>
+  <line x1="680" y1="220" x2="680" y2="640" stroke="#7d522d" stroke-width="8"/>
+  <line x1="840" y1="220" x2="840" y2="640" stroke="#7d522d" stroke-width="8"/>
+</svg>

@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" role="img" aria-labelledby="title desc">
+  <title id="title">Construction hero placeholder</title>
+  <desc id="desc">Site overview with crane and workers.</desc>
+  <rect width="1200" height="800" fill="#f1eadf"/>
+  <rect x="0" y="560" width="1200" height="240" fill="#d8c6ad"/>
+  <rect x="130" y="260" width="320" height="300" fill="#b48f68"/>
+  <rect x="500" y="180" width="250" height="380" fill="#9f774f"/>
+  <rect x="785" y="310" width="280" height="250" fill="#8c5d2f"/>
+  <line x1="660" y1="120" x2="660" y2="560" stroke="#5a3b21" stroke-width="14"/>
+  <line x1="660" y1="140" x2="860" y2="220" stroke="#5a3b21" stroke-width="10"/>
+  <line x1="860" y1="220" x2="860" y2="340" stroke="#5a3b21" stroke-width="8"/>
+  <circle cx="240" cy="600" r="34" fill="#5a3b21"/>
+  <circle cx="1040" cy="600" r="34" fill="#5a3b21"/>
+  <rect x="190" y="568" width="820" height="30" fill="#6e4a29"/>
+  <rect x="260" y="460" width="70" height="100" fill="#3f2a16"/>
+  <rect x="600" y="410" width="70" height="150" fill="#3f2a16"/>
+  <rect x="900" y="470" width="70" height="90" fill="#3f2a16"/>
+</svg>

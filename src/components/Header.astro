@@ -1,0 +1,70 @@
+---
+import LanguageDropdown from "./LanguageDropdown.astro";
+import ThemeDropdown from "./ThemeDropdown.astro";
+import type { LanguageOption, LinkItem, ThemeContent } from "../types/content";
+
+interface Props {
+  brandName: string;
+  navigationAriaLabel: string;
+  navigation: LinkItem[];
+  languageSwitcherLabel: string;
+  languageOptions: LanguageOption[];
+  activeLanguage: string;
+  theme: ThemeContent;
+  currentRoute: string;
+}
+
+const {
+  brandName,
+  navigationAriaLabel,
+  navigation,
+  languageSwitcherLabel,
+  languageOptions,
+  activeLanguage,
+  theme,
+  currentRoute
+} = Astro.props;
+
+const brandHref = navigation[0]?.href ?? "/";
+const languageRoot = `/${activeLanguage}/`;
+
+const isActiveLink = (href: string) => {
+  if (href === languageRoot) {
+    return currentRoute === href;
+  }
+
+  return currentRoute === href || currentRoute.startsWith(href);
+};
+---
+
+<header class="site-header">
+  <div class="shell site-header__inner">
+    <a class="brand" href={brandHref}>
+      <span class="brand__name">{brandName}</span>
+    </a>
+
+    <nav class="main-nav" aria-label={navigationAriaLabel}>
+      <ul class="main-nav__list">
+        {navigation.map((link) => (
+          <li>
+            <a
+              class:list={["main-nav__link", isActiveLink(link.href) && "main-nav__link--active"]}
+              href={link.href}
+            >
+              {link.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+
+    <div class="header-tools">
+      <LanguageDropdown
+        label={languageSwitcherLabel}
+        options={languageOptions}
+        activeLanguage={activeLanguage}
+      />
+      <ThemeDropdown theme={theme} />
+    </div>
+  </div>
+</header>

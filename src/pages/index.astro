@@ -1,0 +1,22 @@
+---
+import { defaultLanguage } from "../lib/content";
+
+const targetPath = `/${defaultLanguage}/`;
+---
+
+<!doctype html>
+<html lang={defaultLanguage}>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="refresh" content={`0;url=${targetPath}`} />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{targetPath}</title>
+    <link rel="canonical" href={targetPath} />
+    <script is:inline define:vars={{ targetPath }}>
+      window.location.replace(targetPath);
+    </script>
+  </head>
+  <body>
+    <a href={targetPath}>{targetPath}</a>
+  </body>
+</html>
