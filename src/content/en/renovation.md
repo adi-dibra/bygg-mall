@@ -37,36 +37,20 @@ site:
       href: /sq/services/renovation/
   theme:
     storageKey: bygg-mall-theme
-    defaultTheme: light-red
+    defaultTheme: trust-friendly
     menuLabel: Display
     themeLabel: Theme
-    lightGroupLabel: Light themes
-    darkGroupLabel: Dark themes
     options:
-      - id: light-red
-        label: Red
-        tone: light
-      - id: light-blue
-        label: Blue
-        tone: light
-      - id: light-green
-        label: Green
-        tone: light
-      - id: light-yellow
-        label: Yellow
-        tone: light
-      - id: dark-red
-        label: Red
-        tone: dark
-      - id: dark-blue
-        label: Blue
-        tone: dark
-      - id: dark-green
-        label: Green
-        tone: dark
-      - id: dark-yellow
-        label: Yellow
-        tone: dark
+      - id: trust-friendly
+        label: Trustworthy + Friendly
+      - id: warm-home
+        label: Warm Home
+      - id: clean-modern
+        label: Clean Modern
+      - id: eco-sustainable
+        label: Eco Sustainable
+      - id: scandi-lite
+        label: Scandinavian-lite
   footerColumns:
     - heading: Pages
       links:
@@ -209,6 +193,8 @@ sections:
       label: View project portfolio
       href: /en/projects/
 ---
+
+
 
 
 

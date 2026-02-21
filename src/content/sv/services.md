@@ -37,36 +37,20 @@ site:
       href: /sq/services/
   theme:
     storageKey: bygg-mall-theme
-    defaultTheme: light-red
+    defaultTheme: trust-friendly
     menuLabel: Installningar
     themeLabel: Tema
-    lightGroupLabel: Ljusa teman
-    darkGroupLabel: Morka teman
     options:
-      - id: light-red
-        label: Rod
-        tone: light
-      - id: light-blue
-        label: Bla
-        tone: light
-      - id: light-green
-        label: Gron
-        tone: light
-      - id: light-yellow
-        label: Gul
-        tone: light
-      - id: dark-red
-        label: Rod
-        tone: dark
-      - id: dark-blue
-        label: Bla
-        tone: dark
-      - id: dark-green
-        label: Gron
-        tone: dark
-      - id: dark-yellow
-        label: Gul
-        tone: dark
+      - id: trust-friendly
+        label: Trustworthy + Friendly
+      - id: warm-home
+        label: Warm Home
+      - id: clean-modern
+        label: Clean Modern
+      - id: eco-sustainable
+        label: Eco Sustainable
+      - id: scandi-lite
+        label: Scandinavian-lite
   footerColumns:
     - heading: Sidor
       links:
@@ -170,6 +154,8 @@ sections:
       label: Se avslutade projekt
       href: /sv/projects/
 ---
+
+
 
 
 

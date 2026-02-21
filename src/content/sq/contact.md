@@ -37,36 +37,20 @@ site:
       href: /sq/contact/
   theme:
     storageKey: bygg-mall-theme
-    defaultTheme: light-red
+    defaultTheme: trust-friendly
     menuLabel: Opsionet
     themeLabel: Tema
-    lightGroupLabel: Tema te ndritshme
-    darkGroupLabel: Tema te erreta
     options:
-      - id: light-red
-        label: Kuqe
-        tone: light
-      - id: light-blue
-        label: Blu
-        tone: light
-      - id: light-green
-        label: Jeshile
-        tone: light
-      - id: light-yellow
-        label: Verdhe
-        tone: light
-      - id: dark-red
-        label: Kuqe
-        tone: dark
-      - id: dark-blue
-        label: Blu
-        tone: dark
-      - id: dark-green
-        label: Jeshile
-        tone: dark
-      - id: dark-yellow
-        label: Verdhe
-        tone: dark
+      - id: trust-friendly
+        label: Trustworthy + Friendly
+      - id: warm-home
+        label: Warm Home
+      - id: clean-modern
+        label: Clean Modern
+      - id: eco-sustainable
+        label: Eco Sustainable
+      - id: scandi-lite
+        label: Scandinavian-lite
   footerColumns:
     - heading: Pages
       links:
@@ -183,6 +167,8 @@ sections:
       label: View services
       href: /sq/services/
 ---
+
+
 
 
 

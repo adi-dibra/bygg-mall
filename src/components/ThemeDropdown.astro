@@ -6,17 +6,12 @@ interface Props {
 }
 
 const { theme } = Astro.props;
-const lightThemes = theme.options.filter((option) => option.tone === "light");
-const darkThemes = theme.options.filter((option) => option.tone === "dark");
 const accentByThemeId: Record<string, string> = {
-  "light-red": "#a8423b",
-  "light-blue": "#2f6f9e",
-  "light-green": "#2f7648",
-  "light-yellow": "#8f6a1e",
-  "dark-red": "#d97b72",
-  "dark-blue": "#77b3df",
-  "dark-green": "#79c193",
-  "dark-yellow": "#d4b062"
+  "trust-friendly": "#f97316",
+  "warm-home": "#d97706",
+  "clean-modern": "#2563eb",
+  "eco-sustainable": "#b87333",
+  "scandi-lite": "#0ea5a4"
 };
 ---
 
@@ -30,30 +25,13 @@ const accentByThemeId: Record<string, string> = {
 
   <div class="preferences-dropdown__panel">
     <p class="preferences-dropdown__heading">{theme.themeLabel}</p>
-
-    <p class="preferences-dropdown__subheading">{theme.lightGroupLabel}</p>
     <div class="preferences-dropdown__options">
-      {lightThemes.map((option) => (
+      {theme.options.map((option) => (
         <button
           class="preferences-dropdown__option preferences-dropdown__option--theme"
           type="button"
           data-theme-option={option.id}
-          style={`--theme-option-accent: ${accentByThemeId[option.id] ?? "#a8423b"}`}
-        >
-          <span class="preferences-dropdown__swatch" aria-hidden="true"></span>
-          <span>{option.label}</span>
-        </button>
-      ))}
-    </div>
-
-    <p class="preferences-dropdown__subheading">{theme.darkGroupLabel}</p>
-    <div class="preferences-dropdown__options">
-      {darkThemes.map((option) => (
-        <button
-          class="preferences-dropdown__option preferences-dropdown__option--theme"
-          type="button"
-          data-theme-option={option.id}
-          style={`--theme-option-accent: ${accentByThemeId[option.id] ?? "#a8423b"}`}
+          style={`--theme-option-accent: ${accentByThemeId[option.id] ?? "#f97316"}`}
         >
           <span class="preferences-dropdown__swatch" aria-hidden="true"></span>
           <span>{option.label}</span>

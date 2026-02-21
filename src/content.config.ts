@@ -156,13 +156,10 @@ const pageSchema = z.object({
       defaultTheme: z.string(),
       menuLabel: z.string(),
       themeLabel: z.string(),
-      lightGroupLabel: z.string(),
-      darkGroupLabel: z.string(),
       options: z.array(
         z.object({
           id: z.string(),
-          label: z.string(),
-          tone: z.enum(["light", "dark"])
+          label: z.string()
         })
       )
     }),

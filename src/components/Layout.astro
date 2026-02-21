@@ -12,7 +12,6 @@ interface Props {
     defaultTheme: string;
     options: Array<{
       id: string;
-      tone: "light" | "dark";
     }>;
   };
 }
@@ -42,18 +41,7 @@ const { htmlLang, meta, theme } = Astro.props;
         const root = document.documentElement;
         const savedMode = window.localStorage.getItem(storageKey);
         const availableThemes = Array.isArray(options) ? options.map((option) => option.id) : [];
-        const lightThemes = Array.isArray(options)
-          ? options.filter((option) => option.tone === "light").map((option) => option.id)
-          : [];
-        const darkThemes = Array.isArray(options)
-          ? options.filter((option) => option.tone === "dark").map((option) => option.id)
-          : [];
-        const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-
-        const fallbackTheme =
-          prefersDark
-            ? darkThemes[0] ?? availableThemes[0] ?? "dark-red"
-            : lightThemes[0] ?? availableThemes[0] ?? "light-red";
+        const fallbackTheme = availableThemes[0] ?? "trust-friendly";
 
         const resolvedTheme = availableThemes.includes(savedMode ?? "")
           ? savedMode

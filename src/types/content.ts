@@ -13,7 +13,6 @@ export interface FooterColumn {
 export interface ThemeOption {
   id: string;
   label: string;
-  tone: "light" | "dark";
 }
 
 export interface ThemeContent {
@@ -21,8 +20,6 @@ export interface ThemeContent {
   defaultTheme: string;
   menuLabel: string;
   themeLabel: string;
-  lightGroupLabel: string;
-  darkGroupLabel: string;
   options: ThemeOption[];
 }
 
